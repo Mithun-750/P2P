@@ -10,7 +10,7 @@ const register = require("./models/accountschema");
 const {connecttomongodb}=require( './models/connect')
 const Message = require("./models/messageschema");
 
-connecttomongodb('mongodb://localhost:27017/user').then(() => {
+connecttomongodb('mongodb+srv://p2p:godzilla@cluster0.zzndhki.mongodb.net/user').then(() => {
   console.log("DB CONNECTED");
 })
 .catch(() => {
