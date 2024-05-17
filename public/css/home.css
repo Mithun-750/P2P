@@ -1,0 +1,390 @@
+/* Resetting default styles */
+body {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Exo 2", sans-serif;
+    background: linear-gradient(90deg, #0a0d12 0%, #1e2f43 20%, #1a2f46 85%, #0a0d12 100%);
+}
+
+body::-webkit-scrollbar {
+    height: 12px;
+    width: 14px;
+    background: transparent;
+    z-index: 12;
+    overflow: visible;
+  }
+
+
+  body::-webkit-scrollbar-track{
+    background:linear-gradient(90deg, #0a0d12 0%, #1e2f43 20%, #1a2f46 85%, #0a0d12 100%);
+  }
+
+  body::-webkit-scrollbar-thumb{
+    width: 10px;
+    background-color: #2c74b3;
+    border-radius: 10px;
+    z-index: 12;
+    border: 4px solid rgba(0, 0, 0, 0);
+    background-clip: padding-box;
+    transition: background-color .32s ease-in-out;
+    margin: 4px;
+    min-height: 32px;
+    min-width: 32px;
+  }
+/* Container for recommended content */
+.main-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.upcoming-game-poster img{
+    width:98vw;
+    aspect-ratio:2.5;
+}
+
+.recommended {
+    margin: 20px;
+}
+
+.images {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Heading for recommended section */
+.heading {
+    color: white;
+    text-indent: 80px;
+    text-transform: uppercase;
+}
+
+/* Container for main image */
+.image-container {
+    max-width: 800px;
+    position: relative;
+    box-shadow: 0 0 40px #0a0d12;  
+    height: 350px;
+}
+
+/* Container for other images */
+.image-store {
+    width: 330px;
+    height: 350px;
+    background-color: #0a0d12;
+    box-shadow: 0 0 20px #0a0d12;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/* Grid for other images */
+.other-images-container {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 1px;
+    /* Minimal gap between columns */
+    row-gap: 1px;
+    /* Minimal gap between rows */
+    padding: 10px;
+}
+
+/* Styling for individual other images */
+.game-other-images {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    opacity: 0.8;
+}
+
+.game-other-images:hover {
+    opacity: 1;
+}
+
+.game-name h3 {
+    color: white;
+    margin: 0;
+    /* Reset margin to remove any default spacing */
+    font-size: 30px;
+    padding: 20px;
+    font-family: "Orbitron", sans-serif;
+    font-weight: 50;
+}
+
+#prevButton1,
+#nextButton1,
+#prevButton2,
+#nextButton2,
+#prevButton3,
+#nextButton3,
+#prevButton4,
+#nextButton4 {
+    font-size: 30px;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.3) 5%, rgba(28, 22, 22, 0) 95%);
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+#nextButton1:hover,
+#nextButton2:hover,
+#nextButton3:hover,   
+#nextButton4:hover {
+    background: linear-gradient(to right, rgba(171, 218, 244, 0) 5%, rgba(171, 218, 244, 0.2) 75%);
+}
+
+#prevButton1:hover,
+#prevButton2:hover,
+#prevButton3:hover,
+#prevButton4:hover {
+    background: linear-gradient(to left, rgba(171, 218, 244, 0) 5%, rgba(171, 218, 244, 0.2) 75%);
+}
+
+
+
+.search-option {
+    margin: 20px 0 30px 0;
+}
+
+.search {
+    width: 100%;
+    position: relative;
+    display: flex;
+    color: black;
+    font-weight: 300;
+}
+
+.searchTerm {
+    width: 100%;
+    border: 3px solid white;
+    border-right: none;
+    padding: 5px;
+    height: 20px;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+}
+
+.searchButton {
+    width: 40px;
+    height: 36px;
+    border: 1px solid #00B4CC;
+    background: #00B4CC;
+    text-align: center;
+    color: #fff;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+/*Resize the wrap to see the search bar change!*/
+.wrap {
+    width: 130%;
+    position: relative;
+    top: 20px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-top: 0px;
+}
+
+.offer-games {
+    display: flex;
+    justify-content: space-between;
+    width: 930px;
+}
+
+.offer-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+.offer-image img {
+    transition: transform 0.3s ease;
+    border-radius: 20px;
+    box-shadow: 0 0 10px #0a0d12;
+}
+
+.offer-image:hover img {
+    transform: scale(1.1);
+}
+
+.offer-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+}
+
+.price-info {
+    color: white;
+    text-align: center;
+    padding: auto;
+    margin: 10px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.info p {
+    width: auto;
+    align-items: center;
+    text-align: center;
+    width: 200px;
+    font-size: large;
+    color: white;
+}
+
+.price-info span:nth-child(1) {
+    background-color: rgb(23, 140, 212);
+    border-radius: 5px;
+    width: 50px;
+}
+
+.price-info span:nth-child(2) {
+    text-decoration: line-through;
+    color: gray;
+}
+
+.categories {
+    display: flex;
+    justify-content: space-between;
+    width: 930px;
+}
+
+.category-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+.category-image img {
+    transition: transform 0.3s ease;
+}
+
+.category-image:hover img {
+    transform: scale(1.1);
+}
+
+.categories-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.category-info p {
+    text-align: center;
+    font-size: larger;
+    text-transform: uppercase;
+    color: white;
+}
+
+.sign-in {
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 930px;
+    color: rgb(113, 106, 106);
+    background-color: rgba(0, 0, 0, 0.4);
+    margin-bottom: 100px;
+}
+
+.sign-in a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    background-color: green;
+    width: 80px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.sign-in a:nth-child(1) {
+    background-color: transparent;
+}
+
+.sign-in h3 {
+    word-spacing: 2px;
+}
+
+.latest-games {
+    background: url("/images/register_background.jpg") no-repeat;
+    background-size: cover;
+    flex-direction: column;
+    align-items: center;
+    height: 350px;
+    margin-bottom: 50px;
+}
+
+.latest-games h1 {
+    font-size: 45px;
+    color: rgba(255, 255, 255, 0.7);
+    background: transparent;
+    text-align: center;
+}
+
+.latest-games h4 {
+    text-align: center;
+    margin-top: -20px;
+}
+
+
+.new-releases {
+    display: flex;
+    justify-content: space-around;
+    width: 930px;
+}
+
+.new-releases-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.new-release-image {
+    border-radius: 20px;
+    box-shadow: 0 0 10px #0a0d12;
+    background: transparent;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.5s ease-in-out;
+}
+
+.new-release-image img {
+    border-radius: 20px;
+    transition: transform 0.3s ease;
+}
+
+
+.new-release-image:hover img {
+    transform: scale(1.1);
+}
+
+
+.new-release-image:first-child {
+    transform: perspective(1000px) rotateY(-35deg);
+}
+
+.new-release-image:last-child {
+    transform: perspective(1000px) rotateY(35deg);
+}
+
+
+.new-release-image:first-child:hover {
+    transform: perspective(1000px) rotateY(0deg);
+}
+
+.new-release-image:last-child:hover {
+    transform: perspective(1000px) rotateY(0deg);
+}
+
+h4 {
+    color: rgba(255, 255, 255, 0.7);
+}

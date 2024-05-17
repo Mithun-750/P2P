@@ -1,0 +1,218 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Chat</title>
+</head>
+<style>
+    #contacts-container {
+            max-width: 600px;
+            height: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+</style>
+<body>
+  <div id="contacts-container"></div>
+
+  <div id="new-message">
+    <form action="/send" method="post">
+    <input type="text" id="name" placeholder="Name" name="recipientId">
+    <input type="text" id="message-content" placeholder="Message" name="content">
+    <button type="submit">Send</button>
+    </form>
+  </div>
+  <style>
+      #contacts-container div {
+  cursor: pointer; /* Set pointer cursor for contact elements */
+  margin-bottom: 5px; /* Add some space between contacts */
+  transition: background-color 0.3s ease; /* Smooth transition for background color change */
+}
+
+#contacts-container div:hover {
+  background-color: #e6f7ff; /* Light blue background color on hover */
+}
+  </style> -->
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Chat</title>
+    <style>
+    body {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100vh;
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(90deg, #0a0d12 0%, #1e2f43 20%, #1a2f46 85%, #0a0d12 100%);
+}
+
+#container {
+  display: flex;
+  max-width: 800px;
+  width: 100%;
+  height: 100%;
+}
+
+#contacts-container {
+  flex: 1;
+  padding: 20px;
+  border-right: 1px solid #ccc;
+}
+
+#contacts-container div {
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: background-color 0.3s ease;
+  font-family: 'Arial', sans-serif; /* Change font family */
+  font-size: 18px; /* Increase font size */
+  color: white; /* Change font color */
+  padding: 15px;
+  border-radius: 5px;
+  text-align: center; /* Center align text */
+}
+
+#contacts-container div:hover {
+  background-color: greenyellow;
+}
+
+#new-message {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding: 20px;
+}
+
+#new-message form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+input[type="text"],
+input[type="submit"] {
+  padding: 15px 20px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  width: 100%;
+  background-color: #555;
+  color: white;
+}
+
+input[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      
+      <div id="contacts-container">
+
+      </div>
+      <div id="new-message">
+        <form action="/send" method="post">
+          <input type="text" id="name" placeholder="Name" name="recipientId">
+          <input type="text" id="message-content" placeholder="Message" name="content">
+          <input type="submit" value="Send">
+        </form>
+      </div>
+    </div>
+  
+  <script>
+ document.addEventListener("DOMContentLoaded", async () => {
+  try {
+    const response = await fetch("/userChat", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!response.ok) {
+      const err_msg = await response.json();
+      console.error(err_msg.errorMessage);
+    } else {
+      const contacts = await response.json();
+      console.log(contacts);
+      const contactsContainer = document.getElementById("contacts-container");
+      contactsContainer.innerHTML = ""; // Clear previous content
+
+      contacts.forEach(contact => {
+        const contactDiv = document.createElement("div");
+        contactDiv.textContent = contact;
+        contactsContainer.appendChild(contactDiv);
+      });
+    }
+  } catch (error) {
+    console.error("Network error:", error);
+  }
+});
+
+// Add event listener to handle contact clicks
+document.addEventListener("click", async (event) => {
+  
+  const contactDiv = event.target.closest("#contacts-container > div");
+  if (contactDiv) {
+  
+    const recipientId = contactDiv.textContent;
+    
+    
+      localStorage.setItem("rcv_name", JSON.stringify(recipientId));
+
+    
+
+    try {
+      const response = await fetch(`/messages/${recipientId}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      
+      
+      if (!response.ok) {
+        const err_msg = await response.json();
+        console.error(err_msg.errorMessage);
+      } else {
+        const chat_data= await response.json();
+
+        localStorage.setItem('chat_data',JSON.stringify(chat_data));
+        console.log(chat_data.content);
+        window.location.href='/chat';
+        
+      }
+    } catch (error) {
+      console.error("Network error:", error);
+    }
+  }
+});
+
+
+ 
+
+    
+   
+  </script>
+</body>
+</html>

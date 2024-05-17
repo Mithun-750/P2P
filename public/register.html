@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@500&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Libre+Franklin:wght@500&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Libre+Franklin:wght@500&family=Orbitron:wght@400..900&family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/register.css">
+  <script src="./verify.js" defer ></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script>
+    $(function(){
+        if (document.cookie.includes('username')) {
+            console.log("Logged in user");
+            $('#header').load('header.html');
+        } else {
+            console.log("No logged in user");
+            $('#header').load('header1.html');
+        }
+        $('#footer').load('footer.html');
+    });
+</script>
+<script src="./verify.js" defer></script>
+</head>
+
+<body>
+  <div id="header"></div>
+  <div class="wrapper">
+    <div class="register">
+      <h2>Register</h2>
+      <h4 class="errorregister"></h4>
+      <form id="registrationForm" action="/register" method="post">
+        <div class="inputBx">
+          <input type="email" id="email" name="email" required>
+          <label for="email">Email</label>
+          <box-icon type='solid' name='envelope' color="white"></box-icon>
+        </div>
+
+        <div class="inputBx">
+          <input type="text" id="username" name="username" required>
+          <label for="username">Username</label>
+          <box-icon type='solid' name='user' color="white"></box-icon>
+        </div>
+       
+
+        <div class="inputBx">
+          <input type="password" id="password" name="password" required>
+          <label for="password">Password</label>
+          <box-icon type="solid" name='key' color="white"></box-icon>
+        </div>
+        <div class="inputBx">
+          <input type="password" id="password" name="confirm_pass" required>
+          <label for="passwor">Retype password</label>
+        </div>
+
+        <div class="new">
+          <button type="submit" style="margin: 10px 50px 10px 20px" >
+            Next
+          </button>
+        </div>
+        <div class="paragraph">
+          <p>Already have an account? <a href="/login">Login</a></p>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div id="footer"></div>
+
+</body>
+
+</html>

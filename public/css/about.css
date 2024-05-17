@@ -1,0 +1,192 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body{
+    width: 100vw;
+    overflow-x: hidden;
+  }
+
+  body::-webkit-scrollbar {
+    height: 12px;
+    width: 14px;
+    background: transparent;
+    z-index: 12;
+    overflow: visible;
+  }
+
+
+  body::-webkit-scrollbar-track{
+    background:linear-gradient(90deg, #0a0d12 0%, #1e2f43 20%, #1a2f46 85%, #0a0d12 100%);
+  }
+
+  body::-webkit-scrollbar-thumb{
+    width: 10px;
+    background-color: #2c74b3;
+    border-radius: 10px;
+    z-index: 12;
+    border: 4px solid rgba(0, 0, 0, 0);
+    background-clip: padding-box;
+    transition: background-color .32s ease-in-out;
+    margin: 4px;
+    min-height: 32px;
+    min-width: 32px;
+  }
+
+  
+
+  .aboutus {
+    background-color: rgba(8, 8, 8, 255);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .firstpart {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 200px;
+    margin-bottom: 200px;
+    font-family: "Exo 2", sans-serif;
+  }
+
+  .firstpartcontent {
+    color: white;
+  }
+
+  .firstpart h1 {
+    position: relative;
+    top: -110px;
+    left: 150px;
+    font-size: 50px;
+  }
+
+
+  .firstpartcontent p {
+    position: relative;
+    width: 400px;
+    top: -60px;
+    left: 70px;
+    font-size: 25px;
+    text-align: justify;
+  }
+
+  .firstpartcontent p::first-letter {
+    font-size: 30px;
+  }
+
+
+  .firstpartcontent img {
+    width: 150px;
+    height: 150px;
+  }
+
+  #myVideo {
+    width: 650px;
+    height: 400px;
+    box-shadow: 0px 0px 10px aqua;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+
+  .secondpart {
+    position: relative;
+    background: url("/images/wallpaperflare.com_wallpaper_\(2\).jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 700px;
+    color: white;
+    padding: 40px 40px 40px 40px;
+    font-family: "Exo 2", sans-serif;
+  }
+
+  .secondpart .secondpartcontent{
+    position: relative;
+    left: 7%;
+    width: 50%;
+  }
+
+  .secondpartcontent h1{
+    position: relative;
+    left: 5%;
+  }
+
+  .secondpart .believes {
+    display: block;
+    padding: 30px;
+  }
+
+  .believes li {
+    position: relative;
+    width: 700px;
+    margin-bottom: 20px;
+    display: flex; 
+  align-items: flex-start;
+  line-height: 25px;
+  font-size: 15px;
+  }
+
+  .believes li::before {
+    content: '';
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+    background-size: 10px;
+    background-image: url(https://cdn-icons-png.flaticon.com/512/5087/5087379.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-right: 5px;
+    flex-shrink: 0; 
+  margin-top: 5px; 
+  }
+
+
+  .thirdpart{
+    margin: 50px 50px 90px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .thirdpart .thirdpartcontent{
+    width:400px;
+    color: white;
+    font-family: "Exo 2", sans-serif;
+  }
+
+  .thirdpart .thirdpartcontent h1{
+    font-size: 35px;
+  }
+
+  .thirdpart .thirdpartcontent p{
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .thirdpart .thirdpartcontent a{
+    text-decoration: none;
+    font-size: 20px;
+    position: relative;
+    left:26%;
+    top: 15px;
+    color: cyan;
+  }
+
+  .game_image{
+    position: relative;
+  }
+
+  #games_col_right .game_image img{
+    width: 237px;
+    height: 95px;
+  }
+
+  
+
+
+  

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+         footer {
+    background: linear-gradient(90deg, #2c74b3 0%, #205295 25%,#144272 50%, #0a2647 75%);
+    font-size: 16px;
+    width: 100%;
+  }
+
+  footer * {
+    font-family: "Exo 2", sans-serif;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+  }
+
+  .row {
+    padding: 2em 1em;
+  }
+
+  .row.primary {
+    display: grid;
+    grid-template-columns: 2fr 1fr 2fr;
+    align-items: stretch;
+  }
+
+  .column {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 0 2em;
+    min-height: 15em;
+  }
+
+ .column h3 {
+    width: 100%;
+    text-align: left;
+    color: #2a8ded;
+    font-size: 1.6em;
+    white-space: nowrap;
+  }
+
+  .column ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    right: 45px;
+  }
+
+  .column li:not(:first-child) {
+    margin-top: 0.8em;
+  }
+
+  .column ul li a {
+    color: #ffffff;
+    text-decoration: none;
+  }
+
+  .column ul li a:hover {
+    color: #2a8ded;
+  }
+
+  .about p {
+    text-align: justify;
+    line-height: 2;
+    margin: 0;
+    font-size: 15px;
+  }
+
+  .subscribe input,
+  .subscribe button {
+    font-size: 1em;
+    padding: 1em;
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 5px;
+  }
+
+  .subscribe button {
+    background-color: #2a8ded;
+    color: #ffffff;
+  }
+
+  .subscribe button:hover {
+    background: rgb(9, 201, 9);
+  }
+
+  .social {
+    display: flex;
+    justify-content: space-around;
+    font-size: 2.4em;
+    flex-direction: row;
+    margin-top: 0.5em;
+  }
+
+  .social i {
+    color: white;
+  }
+
+  .social i:hover {
+    color: #2a8ded;
+  }
+
+  .row.secondary {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    color: white;
+  }
+
+  .row.secondary i {
+    font-size: 1.8em;
+    color: #2a8ded;
+  }
+
+  .row.secondary div {
+    padding: 1em 0;
+    width: 100%;
+  }
+
+  .row.secondary div:hover {
+    background-color: #25262e;
+  }
+
+  .copyright {
+    padding: 0.3em 1em;
+    background-color: #25262e;
+  }
+
+  .copyright p {
+    font-size: 0.9em;
+    text-align: center;
+    color: white;
+  }
+
+  @media screen and (max-width: 850px) {
+    .row.primary {
+      grid-template-columns: 1fr;
+    }
+
+    .row.secondary {
+      flex-direction: column;
+    }
+  }
+    </style>
+</head>
+<body>
+    <footer>
+        <div class="row primary">
+          <div class="column about">
+            <h3>About P2P</h3>
+            <p>
+              Our P2P gaming website connects gamers directly, fostering a community-driven marketplace where players can
+              buy, sell, and trade games securely. Say goodbye to middlemen and hello to seamless transactions among fellow
+              gaming enthusiasts
+            </p>
+          </div>
+          <div class="column links">
+            <h3>Quick Links</h3>
+            <ul>
+              <li>
+                <a href="/faq">F.A.Q</a>
+              </li>
+              <li>
+                <a href="#cookies-policy">Cookies Policy</a>
+              </li>
+              <li>
+                <a href="#terms-of-services">Terms Of Service</a>
+              </li>
+              <li>
+                <a href="#support">Support</a>
+              </li>
+              <li>
+                <a href="#careers">Careers</a>
+              </li>
+            </ul>
+          </div>
+          <div class="column subscribe">
+            <h3>Subscribe</h3>
+            <div>
+              <input type="email" placeholder="Your email id here" />
+              <button>Subscribe</button>
+            </div>
+            <div class="social">
+              <a href="#" target="_blank"><i class="fa-brands fa-facebook-square"></i></a>
+              <a href="#" target="_blank"><i class="fa-brands fa-instagram-square"></i></a>
+              <a href="https://twitter.com/imVkohli" target="_blank"><i class="fa-brands fa-twitter-square"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="row secondary">
+          <div>
+            <p>
+              <i class="fas fa-phone-alt"></i>
+            </p>
+            <p>+12 123456789</p>
+          </div>
+          <div>
+            <p><i class="fas fa-envelope"></i></p>
+            <p>mail@domain.com</p>
+          </div>
+          <div>
+            <p><i class="fas fa-map-marker-alt"></i></p>
+            <p>1234 Pearl Street</p>
+          </div>
+        </div>
+        <div class="row copyright">
+          <p>Copyright &copy; 2021 Coding Artist | All Rights Reserved</p>
+        </div>
+      </footer>
+    
+</body>
+</html>

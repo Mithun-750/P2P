@@ -1,0 +1,124 @@
+body {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Exo 2", sans-serif;
+    background: linear-gradient(90deg, #0a0d12 0%, #1e2f43 20%, #1a2f46 85%, #0a0d12 100%);
+}
+
+body::-webkit-scrollbar {
+    height: 12px;
+    width: 14px;
+    background: transparent;
+    z-index: 12;
+    overflow: visible;
+  }
+
+
+  body::-webkit-scrollbar-track{
+    background:linear-gradient(90deg, #0a0d12 0%, #1e2f43 20%, #1a2f46 85%, #0a0d12 100%);
+  }
+
+  body::-webkit-scrollbar-thumb{
+    width: 10px;
+    background-color: #2c74b3;
+    border-radius: 10px;
+    z-index: 12;
+    border: 4px solid rgba(0, 0, 0, 0);
+    background-clip: padding-box;
+    transition: background-color .32s ease-in-out;
+    margin: 4px;
+    min-height: 32px;
+    min-width: 32px;
+  }
+
+.news_page{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+}
+
+.news_page h1{
+    color: white;
+}
+
+.latest_news{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    gap:40px;
+}
+
+
+.latest-item{
+    display: flex;
+    align-items: center;
+    justify-content:center;
+}
+
+.latest .news-image {
+    position: relative;
+    width: 250px;
+    height: 140px;
+}
+
+.latest .news-image img {
+    width: 100%;
+    height: 100%;
+}
+
+.latest .news-image::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0);
+    transition: background-color 0.3s ease; /* Add transition for smooth effect */
+    pointer-events: none; /* Ensure the overlay doesn't interfere with hover */
+}
+
+.latest .news-image:hover::after {
+    background-color: rgba(255, 255, 255, 0.2); /* Set the background color */
+}
+
+
+.news-matter{
+    position: relative;
+    left: 20px;
+    top: -10px;
+    width:700px;
+}
+
+.news-matter h3 a{
+    color: white;
+    text-decoration: none;
+}
+
+.news-matter p:first-child{
+    color: rgba(255, 255, 255, 0.311);
+    font-size: 12px;
+}
+
+.news-matter P:nth-last-child(2){
+    color: rgba(255, 255, 255, 0.89);
+}
+
+.news-matter a{
+    text-decoration:1px underline;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.news-matter a:hover{
+    text-decoration: 3px underline yellow;
+}
+
+
+.news-matter h3 a:hover{
+    color: white;
+    text-decoration: none;
+}

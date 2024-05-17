@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>P2P HOME PAGE</title>
+
+  <link rel="stylesheet" href="./css/home.css">
+  <script src="home.js"></script>
+
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@500&family=Orbitron:wght@400..900&display=swap"
+    rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Libre+Franklin:wght@500&family=Orbitron:wght@400..900&display=swap"
+    rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Libre+Franklin:wght@500&family=Orbitron:wght@400..900&family=Roboto+Slab:wght@100..900&display=swap"
+    rel="stylesheet">
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script>
+      $(function(){
+          if (document.cookie.includes('username')) {
+              console.log("Logged in user");
+              $('#header').load('header.html');
+          } else {
+              console.log("No logged in user");
+              $('#header').load('header1.html');
+          }
+          $('#footer').load('footer.html');
+          $('#navigation_bar').load('navigationbar.html');
+      });
+  </script>
+  
+</head>
+
+
+<body>
+  <div id="header"></div>
+
+
+  <div class="main-page">
+    <div id="navigation_bar"></div>
+    <div class="upcoming-game-poster">
+      <img src="https://pbs.twimg.com/media/GAik4I6WYAEpWL7?format=jpg&name=900x900" alt="upcoming-game-poster">
+    </div>
+    <div class="recommended">
+      <h3 class="heading">FEATURED & RECOMMENDED</h3>
+      <div class="images">
+        <button id="prevButton1">&lt;</button>
+        <div class="image-container" id="image-container"></div>
+        <div class="image-store">
+          <div class="game-name">
+          </div>
+          <div class="other-images-container">
+            <div class="game-other-images"></div>
+            <div class="game-other-images"></div>
+            <div class="game-other-images"></div>
+            <div class="game-other-images"></div>
+          </div>
+        </div>
+        <button id="nextButton1">&gt;</button>
+      </div>
+    </div>
+
+    <div class="search-option">
+      <h2 style="color: white;">Uncover the gaming universe</h2>
+      <div class="wrap">
+        <form class="search">
+          <input type="text" class="searchTerm" id="searchinput" placeholder="Search Store"
+            style="font-family:'Exo 2'; font-size: 15px;">
+          <button type="submit" class="searchButton">
+            <i class="fa fa-search"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+
+
+    <div class="special-offers" style="margin: 30px;">
+      <h3 class="heading">FEATURED DISCOUNTS</h3>
+      <div class="offer-container">
+        <button id="prevButton2">&lt;</button>
+        <div class="offer-games">
+          <div class="offer-image">  
+          </div>
+          <div class="offer-image">
+          </div>
+          <div class="offer-image">
+          </div>
+          <div class="offer-image">
+          </div>
+        </div>
+        <button id="nextButton2">&gt;</button>
+      </div>
+    </div>
+
+
+    <div class="popular-genere">
+      <h3 class="heading">POPULAR GENRES</h3>
+      <div class="categories-container">
+        <button id="prevButton3">&lt;</button>
+        <div class="categories">
+          <div class="category-image"></div>
+          <div class="category-image"></div>
+          <div class="category-image"></div>
+          <div class="category-image"></div>
+        </div>
+        <button id="nextButton3">&gt;</button>
+      </div>
+    </div>
+
+
+    <div class="sign-in">
+      <h3>Sign in to explore unlimited games</h3>
+      <a href="login.html">SIGN IN</a>
+      <h3>Or <a href="register.html"> REGISTER</a> and join P2P for free</h3>
+    </div>
+
+    <div class="latest-games">
+      <h1>TOP NEW RELEASES</h1>
+      <h4>Fresh Arrivals: Explore Now!</h4>
+      <div class="new-releases-container">
+        <button id="prevButton4">&lt;</button>
+        <div class="new-releases">
+          <div class="new-release-image"></div>
+          <div class="new-release-image"></div>
+          <div class="new-release-image"></div>
+          <div class="new-release-image"></div>
+        </div>
+        <button id="nextButton4">&gt;</button>
+      </div>
+    </div>
+</div>
+
+<div id="footer"></div>
+
+</body>
+<script>
+  
+
+
+document.querySelectorAll(".category-image").forEach(image => {
+    image.addEventListener("click", async (event) => {
+        if (event.target.tagName === 'IMG') {
+            
+            const categoryInfo = event.target.closest('.category-image').querySelector('p');
+            if (categoryInfo) {
+                
+                const categoryName = categoryInfo.textContent;
+                console.log(categoryName);
+              
+                try {
+                const response = await fetch(`/categories?search=${categoryName}`);
+                if (!response.ok) {
+                 throw new Error('Failed to fetch data');
+                 }
+                 let data = await response.json();
+                console.log(data);
+                  localStorage.setItem('category_games', JSON.stringify(data));
+  
+                window.location.href = '/genre';
+                } catch (error) {
+                 console.error('Error:', error.message);
+                }
+
+            }
+        }
+    });
+});
+
+
+
+
+
+  if (document.cookie.includes('username')) {
+    const h3Elements = document.querySelectorAll(".sign-in h3");
+    const aElement = document.querySelector(".sign-in a");
+
+    h3Elements.forEach(h3 => {
+      h3.style.display = "none";
+    });
+
+    if (aElement) {
+      aElement.style.display = "none";
+    }      
+  } else {
+    
+  }
+
+
+
+  document.addEventListener('DOMContentLoaded', async function() {
+    document.querySelectorAll('.offer-image').forEach((offerImage) => {
+      offerImage.addEventListener('click', function(event) {
+        const gameName = event.currentTarget.querySelector('.info p b ').textContent;
+        console.log('Clicked image game:', gameName); 
+        fetch('/getGame', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ game_name: gameName }) 
+        })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(data => {
+          console.log('Product data:', data); 
+          localStorage.setItem('productData', JSON.stringify(data));
+          window.location.href = '/game-page'; 
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+      });
+    });
+  });
+
+
+
+document.addEventListener('DOMContentLoaded', async function() {
+  const imagesContainer = document.querySelector('.image-container');
+  imagesContainer.addEventListener('click', function(event) {
+    if (event.target.tagName === 'IMG') {
+      const imageUrl = event.target.src;
+      console.log('Clicked image URL:', imageUrl); 
+      fetch('/getProduct', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ imageUrl: imageUrl })
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log('Product data:', data); 
+        localStorage.setItem('productData', JSON.stringify(data));
+        window.location.href = '/game-page'; 
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    }
+  });
+});
+
+
+  
+document.querySelector(".search").addEventListener("submit" , async ()=>{
+
+
+const searchinput = document.getElementById('searchinput').value;
+fetch(`/games?search=${searchinput}`)
+  .then(response => response.json())
+  .then(data => {
+      localStorage.setItem('filter_games',JSON.stringify(data));
+      window.location.href='/search';
+      
+  })
+
+  .catch(error => console.error('Error searching for games:', error));
+})
+ 
+
+
+</script>
+
+</html>

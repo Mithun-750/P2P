@@ -1,0 +1,57 @@
+body {
+    text-align: center;
+}
+
+strong {
+    color: black;
+    font-size: 100px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.forms{
+    display: none;
+    margin: 20px;
+}
+
+.detail {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+div > li{
+    text-align: left;
+}
+.details {
+    display: inline-block;
+    color: white;
+    background-color: black;
+    font-size: 20px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border-radius: 6px;
+    padding: 7px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+button {
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 18px;
+    color:black;
+    background-color: rgb(79, 160, 79);
+    border-radius: 15px;
+}
+
+.notification{
+    color:red;
+    display: none;
+    content: "";
+}
+#deletebtn{
+    background-color: rgb(216, 52, 40);
+}
+
+
+#displayLogin,#displayReg{
+    color:rgb(42, 129, 250);
+}

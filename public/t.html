@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Chat</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .message-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .message {
+            margin-bottom: 10px;
+            padding: 5px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+        }
+
+        .message-form {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        input[type="text"], textarea {
+            width: calc(100% - 10px);
+            margin-bottom: 10px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        button {
+            padding: 8px 15px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<div class="message-container" id="message-container"></div>
+<div class="message-form" id="message-form">
+    <input type="text" id="sender" placeholder="Your Name">
+    <input type="text" id="recipient" placeholder="Recipient Name">
+    <textarea id="content" placeholder="Message"></textarea>
+    <button onclick="sendMessage()">Send</button>
+</div>
+
+<script>
+    async function fetchUserChat() {
+        try {
+            const response = await fetch('/userChat');
+            if (response.ok) {
+                const chatData = await response.json();
+                renderChat(chatData);
+            } else {
+                console.error('Error:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+
+    function renderChat(chatData) {
+        const messageContainer = document.getElementById('message-container');
+        messageContainer.innerHTML = ''; // Clear previous content
+
+        chatData.forEach(message => {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message');
+            messageDiv.textContent = `${message.sender}: ${message.content}`;
+            messageContainer.appendChild(messageDiv);
+        });
+    }
+
+    async function sendMessage() {
+        const sender = document.getElementById('sender').value;
+        const recipient = document.getElementById('recipient').value;
+        const content = document.getElementById('content').value;
+
+        try {
+            const response = await fetch('/send', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ sender, recipient, content })
+            });
+            if (response.ok) {
+                const responseData = await response.json();
+                console.log(responseData.message);
+                fetchUserChat(); // Refresh chat after sending message
+            } else {
+                console.error('Error:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+
+    fetchUserChat();
+</script>
+</body>
+</html>

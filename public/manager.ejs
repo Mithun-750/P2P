@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/admin_manager.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="./manager.js" defer></script>
+</head>
+
+
+<body>
+    <div id="header"></div>
+    <div class="name"><strong>MANAGER</strong></div>
+
+    <div class="detail">        
+        <div>
+            <button class="details" id="regNames" onclick="openclosereg()">See Registered Users</button>
+            <h1 id="displayReg"></h1>
+            <p  id="registernotification"></p>
+        </div>
+        <div id="updaterolebutton"></div>
+         <!-- update form -->
+
+         <div>
+            <button class="details buttons"  id="updatebutton" onclick="opencloseform(this) ">update password
+               of an Account</button>
+            <form class="forms" action="/admin/updatepassword" method="post"  id="updateform">
+                <label>UserName:</label>
+                <input type="text" name="usernametoupdate" required style="border-radius: 4px; height:25px" class="name">
+                <label>Password:</label>
+                <input type="password" name="newpassword" required style="border-radius: 4px; height:25px" class="name">
+                <button type="submit" id="pswd" >Change Password</button>
+                <p class="notification" id="updatenotification"></p>
+            </form>
+           
+        </div>       
+
+        <!-- delete form  -->
+        
+        <div>
+
+            <button class="details buttons" id="delAcc" onclick="opencloseform(this)">Delete User
+                Account</button>
+            <form class="forms" action="/admin/delAcc" method="post" 
+                id="deleteForm">
+                <label>Enter UserName to delete:</label>
+                <input type="text" name="deleteaccountno" required style="border-radius: 4px; height:25px" class="name">
+                <button id="deletebtn" type="submit">Delete</button>
+                <p class="notification" id="deletenotification"></p>
+            </form>
+        </div>
+
+    </div>
+
+    <div id="footer"></div>
+</body>
+
+</html>

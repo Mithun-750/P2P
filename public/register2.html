@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Libre+Franklin:wght@500&family=Orbitron:wght@400..900&family=Roboto+Slab:wght@100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="register2.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+   
+   <link rel="stylesheet" href="./css/register2.css">
+   
+   <script>
+    $(function(){
+        if (document.cookie.includes('username')) {
+            console.log("Logged in user");
+            $('#header').load('header.html');
+        } else {
+            console.log("No logged in user");
+            $('#header').load('header1.html');
+        }
+        $('#footer').load('footer.html');
+    });
+</script>
+</head>
+
+<body>
+  
+    <div id="header"></div>
+    <div id="register2">
+        <div class="total">
+            <h2>Register</h2>
+            <form action="/register2" method="post">
+              <div class="inputBx">
+                <input type="date" id="date-of-birth" name="dateOfBirth"> 
+                <label for="date-of-birth">Date-of-Birth:</label>
+            </div>
+            <div class="inputBx">
+                <input type="password" id="password" required name="backupKey">
+                <label for="password">Backup-Key</label>
+                 <i class="fas fa-eye-slash" id="togglePassword"></i>
+            </div>
+                <div class="notice">
+                    <p><strong>Notice:</strong> Please remember your backup key!</p>
+                    <p>Your backup key is essential for securely changing your password in case you forget it or need to
+                        reset it. Make sure to store it in a safe place that you can access easily when needed.</p>
+                </div>
+                <div class="button">
+                    <button>CONFIRM</button>
+                </div>
+                <div class="matter">
+                    <p>Already have an account?<a href="">Login</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <div id="footer"></div>
+
+    <script>
+        $(document).ready(function() {
+            $('#togglePassword').click(function() {
+                var passwordField = $('#password');
+                var fieldType = passwordField.attr('type');
+                
+                if (fieldType === 'password') {
+                    passwordField.attr('type', 'text');
+                    $(this).removeClass('fa-eye-slash').addClass('fa-eye');
+                } else {
+                    passwordField.attr('type', 'password');
+                    $(this).removeClass('fa-eye').addClass('fa-eye-slash');
+                }
+            });
+        });
+    </script>
+   
+
+    
+</body>
+
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./css/admin_manager.css">
+    <script src="./admin_manager.js" defer></script>
+</head>
+
+
+<body>
+    <div id="header"></div>
+    <div class="name"><strong style="color: rgb(93, 179, 250);">ADMIN</strong></div>
+
+    <div class="detail">
+
+    <!-- login users -->
+
+    <div>
+        <button class="details" id="loginNames"  onclick="opencloselogin() ">See Currently LoggedIn
+            Users</button>
+        <h1 id="displayLogin"></h1>
+        <p  id="loginnotification"></p>
+    </div>
+
+    <!-- regestired users -->
+
+    <div>
+        <button class="details" id="regNames" onclick="openclosereg()">See Registered Users</button>
+        <h1 id="displayReg"></h1>
+        <p  id="registernotification"></p>
+    </div>
+
+        <!-- update password form -->
+
+        <div>
+            <button class="details buttons"  id="updatebutton" onclick="opencloseform(this) ">update password
+               of an Account</button>
+            <form class="forms" action="/admin/updatepassword" method="post"  id="updateform">
+                <label>UserName:</label>
+                <input type="text" name="usernametoupdate" required style="border-radius: 4px; height:25px" class="name">
+                <label>Password:</label>
+                <input type="password" name="newpassword" required style="border-radius: 4px; height:25px" class="name">
+                <button type="submit" id="pswd" >Change Password</button>
+                <p class="notification" id="updatenotification"></p>
+            </form>
+           
+        </div>        
+
+        <!-- updaterole -->
+
+        <div>
+        <button class="details buttons"  id="updaterolebutton" onclick="opencloseform(this) ">update Role
+            of an Account</button>
+         <form class="forms" action="/admin/updaterole" method="post"  id="updateroleform">
+             <label>UserName:</label>
+             <input type="text" name="usernametoupdaterole" required style="border-radius: 4px; height:25px" class="name">
+             <label>Account type :</label>
+            <select name="newrole" style="font-size:18px;border-radius: 20px;">
+                <option>user</option>
+                <option>manager</option>
+                <option>admin</option>
+            </select>
+             <button type="submit">Change Role</button>
+             <p class="notification" id="updaterolenotification"></p>
+         </form>
+         
+
+        </div>
+
+        <!-- delete form  -->
+        
+         <div>
+
+        <button class="details buttons" id="delAcc" onclick="opencloseform(this)">Delete User
+            Account</button>
+        <form class="forms" action="/admin/delAcc" method="post" 
+            id="deleteForm">
+            <label>Enter UserName to delete:</label>
+            <input type="text" name="deleteaccountno" required style="border-radius: 4px; height:25px" class="name">
+            <button type="submit">Delete</button>
+            <p class="notification" id="deletenotification"></p>
+        </form>
+        </div>
+
+    </div>
+
+    <div id="footer"></div>
+</body>
+
+</html>

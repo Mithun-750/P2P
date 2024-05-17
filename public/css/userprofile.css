@@ -1,0 +1,258 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-image: linear-gradient(90deg,#0f1620 10%,#1e2f43 20%,#1e2f43 80%,#0f1620 90%);
+}
+.container{
+  position:relative;
+  display:flex;
+  flex-direction: row;
+  justify-content:space-evenly;
+}
+
+#navigationbar{
+  margin: 20px auto;
+  margin-right: 32px;
+  padding: 20px;
+  position: sticky;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  top: 10px;
+  border-radius: 20px;
+  background-color: white;
+
+}
+
+#navigationbar ul{
+  margin-right: 20px;
+}
+
+#navigationbar  a{
+  text-decoration: none;
+  color:black;
+  font-size: 13px;  
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+
+#navigationbar li{
+  border-bottom: 0.4px groove black;
+  list-style-type: none;
+  box-shadow: 1px 1px rgb(121, 116, 116);
+  background-color: rgb(244, 248, 248);
+  border-radius: 12px;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+#navigationbar li:hover {
+  background-image:  linear-gradient(90deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+#navigationbar li span{
+  margin-right: 7px;
+}
+
+
+
+#downloads,#transactions{
+  justify-content: center;
+  text-align: center;
+  align-content: center;
+  align-items: center;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  color: black;
+  height: 100%;
+  background-image: linear-gradient(90deg,#d5dfed 10%,#b8bcc1 20%,#8a97a6 80%,#71757a 90%);
+}
+
+.card_load_extreme_descripion1,.card_load_extreme_descripion2 {
+  width: 80%;
+  height: 65px;
+  position: relative;
+  left: 10%;
+  right: 10%;
+  border-radius: 5px;
+  font-size: 20px;
+  background: linear-gradient(120deg, #e5e5e5 30%, #f0f0f0 38%, #f0f0f0 
+  40%, #e5e5e5 48%);
+  margin-top: 10px;
+  background-size: 200% 100%;
+  background-position: 100% 0;
+  animation: load89234 2s infinite;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+@keyframes load89234 {
+  100% {
+    background-position: -100% 0;
+  } 
+}
+
+.card{
+  width: 750px;
+  margin: 20px auto;
+  margin-left: 10px;
+  margin-bottom: 20px;
+}
+
+.box{
+  width: 750px;
+  padding: 20px;
+  position:absolute;
+  background-color: white;
+  border-radius: 10px;    
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transform-style: preserve-3d;
+  backface-visibility:hidden;
+  color:lightskyblue;
+  margin-bottom: 20px;
+}
+
+.box > *{
+  transform: translateZ(200px);
+}
+.flipped{
+  animation:boxanimate 1.5s linear forwards 1;
+}
+.flippedreverse{
+  animation:boxanimatereverse 1.5s  linear forwards 1;
+}
+
+.card{
+  transform-style: preserve-3d;
+}
+ 
+
+@keyframes  boxanimatereverse {
+  100%{
+    transform: rotateY(180deg);
+  }
+}
+@keyframes boxanimate{ 
+  0%{
+      transform: rotateY(-0.5turn);
+  }
+}
+ 
+  /*account details */
+
+  #accountdetails {
+    display: inline-block;
+    border: 4px groove rgb(131, 131, 255);
+    text-align: center;
+    border-radius: 60px;
+    font-size: 16px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }
+
+  #accountdetails h1 {
+    background-image: linear-gradient(90deg, #a9d3d6 0%, #41a4a9 50%, #094ca9 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  #accountdetails h2 {
+    background-image: linear-gradient(90deg, #2e2e2e 0%, #152424 50%, #010f22 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+
+  /* account settings */
+
+.accountsettings {
+  color:white;
+  padding: 20px;
+  background-color: black;
+  box-shadow: 0 0 10px rgba(233, 224, 224, 0.1);
+  text-align: center;
+}
+.accountsettings .profile-info {
+  display: flex;
+  align-items: center;
+  justify-content:space-evenly;
+  margin-bottom: 20px;
+}
+.accountsettings .profile-info img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-right: 20px;
+  object-fit: cover;
+  transform: translateZ(20px);
+}
+.accountsettings .profile-actions {
+  display: flex;
+  align-items: center;
+}
+.accountsettings .profile-actions button {
+  padding: 10px;
+  margin: 0 5px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.accountsettings .profile-actions button:hover {
+  background-color: #0056b3;
+}
+.accountsettings .detail_value{
+  font-family: Arial, sans-serif;
+  border-radius: 5px;
+  padding:10px;
+  padding-top: 20px;
+  background-color:rgb(20, 20, 20);
+  box-shadow:-3px -3px 7px 3px  #3a75b3;;
+  margin: 20px;
+}
+.accountsettings .detail_value  label{
+  position:relative; 
+  left:-40%; 
+}
+
+.accountsettings .detail_value a{
+  text-decoration: none;
+  color: white;
+}
+.accountsettings input{
+  background-color: rgb(20, 20, 20);
+  color: white;
+  outline: none;
+}
+.accountsettings input[type="text"],
+.accountsettings input[type="email"],
+.accountsettings input[type="password"] {
+  width: calc(100% - 20px);
+  padding: 10px;
+  border:none;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+}
+.accountsettings input[type="file"] {
+  display: none;
+}
+.accountsettings input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.accountsettings input[type="submit"]:hover {
+  background-color: #0056b3;
+}

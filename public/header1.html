@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .logo-image-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  .logo-image-title img {
+    width: 150px;
+    height: 150px;
+  }
+
+  .logo-image-title p {
+    font-family: "Orbitron", sans-serif;
+    text-transform: uppercase;
+    font-size: 25px;
+  }
+
+  header {
+     background: linear-gradient(90deg, #2c74b3 0%, #205295 25%,#144272 50%, #0a2647 75%);
+    color: white;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 100px;
+  }
+
+
+
+  ul {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    list-style: none;
+  }
+
+  ul li {
+    font-size: 20px;
+    margin-right: 20px;
+  }
+
+  .options{
+    position: relative;
+    left: 100px;
+  }
+
+  .options a {
+    text-decoration: none;
+    color: white;
+    font-family: "Orbitron", sans-serif;
+  }
+
+  .options a:hover {
+    text-decoration: underline;
+  }
+
+  .login-register{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    top: -40px;
+    font-size: 17px;
+    width: 12.5%;
+  }
+
+  .login-register a{
+    color: rgba(128,128,128,0.8);
+    font-family: "Orbitron", sans-serif;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  .login-register a:hover{
+    color: white;
+  }
+
+  
+    </style>
+
+<script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo-image-title">
+          <img src="images/design_a_logo_with_word__P2P__p2p_with_high_-removebg-preview-transformed.png" alt="">
+          <p>Pay to play <sup>&reg;</sup></p>
+        </div>
+    
+        <div>
+          <ul class="options">
+            <li><a href="/home">STORE</li></a>
+            <li><a href="/user_chat">CHAT</li></a>
+            <li><a href="/faq">FAQ'S</li></a>
+            <li><a href="/about">ABOUT</li></a>
+          </ul>
+        </div>
+
+        <div class="login-register">
+            <a href="/login">login</a> <span>|</span>
+            <a href="/register">register</a>
+        </div>
+      </header>
+
+</body>
+</html>

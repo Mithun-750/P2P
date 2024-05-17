@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" />
+
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Libre+Franklin:wght@500&family=Orbitron:wght@400..900&display=swap"
+    rel="stylesheet" />
+
+  <style>
+    .nav_bar {
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      color: white;
+      width: 920px;
+      position: relative;
+      top: 20px;
+      background: linear-gradient(90deg, #2c74b3 0%, #205295 25%, #144272 50%, #0a2647 75%);
+      margin-bottom: 20px;
+    }
+
+    .nav_options {
+      overflow: hidden;
+      text-transform: uppercase;
+    }
+
+    .nav_options a {
+      float: left;
+      font-size: 16px;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+
+    .home {
+      float: left;
+      overflow: hidden;
+    }
+
+    .home .homebtn {
+      font-size: 16px;
+      border: none;
+      outline: none;
+      color: white;
+      padding: 14px 16px;
+      background-color: inherit;
+      font-family: inherit;
+      margin: 0;
+      text-transform: uppercase;
+    }
+
+    .home:hover .homebtn {
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+
+    .home-options a {
+      /* Remove float: left; */
+      color: white;
+      text-decoration: none;
+      display: block;
+    }
+
+    .home-options a:hover {
+      color: white;
+      text-decoration: underline red;
+    }
+
+    .home:hover .home-options {
+      display: block;
+    }
+
+    .home-options {
+      display: none;
+      position: absolute;
+      left: 150px;
+      background-color: rgba(0, 0, 0, 0.9);
+      width: auto;
+      /* Adjust width as needed */
+      z-index: 1;
+    }
+
+    .home-options a {
+      padding: 10px;
+      clear: both;
+    }
+
+
+    .subnav {
+      float: left;
+      overflow: hidden;
+    }
+
+    .subnav .subnavbtn {
+      font-size: 16px;
+      border: none;
+      outline: none;
+      color: white;
+      padding: 14px 16px;
+      background-color: inherit;
+      font-family: inherit;
+      margin: 0;
+      text-transform: uppercase;
+    }
+
+    .subnav:hover .subnavbtn {
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+
+    .subnav-content a {
+      float: left;
+      color: white;
+      text-decoration: none;
+    }
+
+    .subnav-content a:hover {
+      color: white;
+      text-decoration: underline red;
+    }
+
+    .subnav:hover .subnav-content {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+
+    .subnav-content {
+      display: none;
+      position: absolute;
+      left: 100px;
+      background-color: rgba(0, 0, 0, 0.9);
+      width: 600px;
+      z-index: 1;
+    }
+
+
+
+    .nav_search form {
+      position: relative;
+      top: 50%;
+      left: 25%;
+      transition: all 1s;
+      width: 50px;
+      height: 50px;
+      box-sizing: border-box;
+      border-radius: 25px;
+      padding: 5px;
+    }
+
+    .nav_search input {
+      position: absolute;
+      top: 5px;
+      left: 0;
+      width: 100%;
+      ;
+      height: 42.5px;
+      line-height: 30px;
+      outline: 0;
+      border: 0;
+      display: none;
+      font-size: 1em;
+      border-radius: 0px;
+      padding: 0 20px;
+    }
+
+    .nav_search .fa {
+      box-sizing: border-box;
+      padding: 10px;
+      width: 43px;
+      height: 43px;
+      position: absolute;
+      top: 5px;
+      right: 0;
+      /* border-radius: 50%; */
+      color: white;
+      text-align: center;
+      font-size: 1.2em;
+      transition: all 1s;
+      size: 50px;
+    }
+
+    .nav_search form:hover {
+      width: 300px;
+      cursor: pointer;
+    }
+
+    .nav_search form:hover input {
+      display: block;
+    }
+
+
+    .nav_search form:hover .fa {
+      background: linear-gradient(90deg, #2c74b3 0%, #205295 25%, #144272 50%, #0a2647 75%);
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="nav_bar">
+    <div class="nav_options">
+      <div class="home">
+        <button class="homebtn">Your Store</button>
+        <div class="home-options">
+          <a href="home.html">home</a>
+          <a href="">offers</a>
+          <a href="">new releases</a>
+        </div>
+      </div>
+
+      <div class="subnav">
+        <button class="subnavbtn">categories</button>
+        <div class="subnav-content">
+          <a href="/categories?search=action">action</a>
+          <a href="/categories?search=horror">Horror</a>
+          <a href="/categories?search=sports">sports</a>
+          <a href="/categories?search=anime">anime</a>
+          <a href="/categories?search=open world">open world</a>
+          <a href="/categories?search=strategy">strategy</a>
+          <a href="/categories?search=adventure">adventure</a>
+          <a href="/categories?search=sci-fi">sci-fi</a>
+          <a href="/categories?search=casual">casual</a>
+          <a href="/categories?search=survival">survival</a>
+          <a href="/categories?search=building">building</a>
+          <a href="/categories?search=rpg">rpg</a>
+          <a href="/categories?search=mystery & detective">mystery & detective</a>
+          <a href="/categories?search=space">space</a>
+          <a href="/categories?search=co-op games">co-op games</a>
+          <a href="/categories?search=brain stroming">brain stroming</a>
+        </div>
+      </div>
+
+      <a href="/news">news</a>
+      <a href="/cart">cart</a>
+    </div>
+  </div>
+
+  <script>
+    
+  document.querySelectorAll(".subnav a").forEach((el)=>{
+
+    el.addEventListener("click", async function(event) {
+    event.preventDefault(); 
+    let search_category = this.textContent.trim(); 
+    console.log(search_category);
+    try {
+      const response = await fetch(`/categories?search=${search_category}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch data');
+      }
+      let data = await response.json();
+      console.log(data);
+      localStorage.setItem('category_games', JSON.stringify(data));
+  
+      window.location.href = '/genre';
+    } catch (error) {
+      console.error('Error:', error.message);
+    }
+  });
+  })
+  
+ 
+  </script>
+</body>
+
+</html>

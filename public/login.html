@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@500&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Libre+Franklin:wght@500&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Libre+Franklin:wght@500&family=Orbitron:wght@400..900&family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./css/login.css">
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script>
+  $(function(){
+      if (document.cookie.includes('username')) {
+          console.log("Logged in user");
+          $('#header').load('header.html');
+      } else {
+          console.log("No logged in user");
+          $('#header').load('header1.html');
+      }
+      $('#footer').load('footer.html');
+  });
+</script>
+<script src="./verify2.js" defer></script>
+</head>
+<body>
+  <div id="header"></div>
+  <div class="wrapper">
+    <div class="login-concept">
+      <h1>P2P</h1>
+    </div>
+    <div class="login-box">
+     
+      <form action="/login" method="post">
+        <h2>Login</h2>
+
+        <h4 class="errorlogin"></h4>
+        <div class="input-box">
+          <input type="text"  name="username" required />
+         
+          <label>User Name</label>
+          
+          <box-icon type="solid" name="user" color="white"></box-icon>
+          
+        </div>
+        
+        <div class="input-box">
+          <input type="password" name="password" required  />
+          <label>Password</label>
+          <box-icon type="solid" name="lock-alt" color="white"></box-icon>
+        </div>
+
+        <div class="remember-forgot">
+          <label><input type="checkbox" id="show-password-checkbox" />Show
+            Password</label>
+          <a href="/fpassword">Forgot Password?</a>
+        </div>
+
+        <button type="submit">Login</button>
+
+        <div class="register-link">
+          <p>Don't have an account? <a href="/register">Register</a></p>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div id="footer"></div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+    const showPasswordCheckbox = document.querySelector('#show-password-checkbox');
+    const passwordInput = document.querySelector('input[type="password"]');
+
+    showPasswordCheckbox.addEventListener('change', function () {
+      if (this.checked) {
+        passwordInput.type = 'text';
+      } else {
+        passwordInput.type = 'password';
+      }
+    });
+  });
+  </script>
+   
+
+</body>
+
+</html>

@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat</title>
+</head>
+<style>
+  body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(90deg, #0a0d12 0%, #1e2f43 20%, #1a2f46 85%, #0a0d12 100%);
+}
+
+#chat-container {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #b5e6e7;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+}
+
+#message-box {
+  background-color: rgb(26, 152, 236);
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#message-content {
+  width: calc(100% - 80px);
+  padding: 10px;
+  border: 1px solid #17b1d8;
+  border-radius: 5px;
+}
+
+#message-content:focus {
+  outline: none;
+}
+
+#message-form {
+  display: flex;
+}
+
+#message-form input[type="text"] {
+  flex: 1;
+}
+
+#message-form button {
+  padding: 10px 20px;
+  margin-left: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #0bf52a;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+#message-form button:hover {
+  background-color: #7dda13;
+}
+
+</style>
+<body>
+  <div id="chat-container"></div>
+  <div id="message-box">
+    <form id="message-form"> 
+      <input type="text" id="message-content" placeholder="Message" name="content">
+      <button type="submit">Send</button> 
+    </form>
+  </div>
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      try {
+        const recipientId = JSON.parse(localStorage.getItem('rcv_name'));
+
+      
+        const displayMessages = (messages) => {
+          const chatContainer = document.getElementById('chat-container');
+          chatContainer.innerHTML = '';
+          messages.forEach(message => {
+            const messageDiv = document.createElement('div');
+            messageDiv.textContent = `${message.sender}: ${message.content}`;
+            chatContainer.appendChild(messageDiv);
+          });
+        };
+
+       
+        const updateChatData = async (messages) => {
+          localStorage.setItem('chat_data', JSON.stringify(messages));
+        };
+
+        // Function to fetch messages using long polling
+        const fetchMessages = async () => {
+          try {
+            const response = await fetch(`/messages/${recipientId}`);
+            if (response.ok) {
+              const data = await response.json();
+             
+              displayMessages(data);
+              updateChatData(data);
+            } else {
+              console.error('Failed to fetch messages:', response.statusText);
+            }
+          } catch (error) {
+            console.error('Network error:', error);
+          } finally {
+           
+            fetchMessages();
+          }
+        };
+
+       
+        fetchMessages();
+
+       
+        document.querySelector("#message-form").addEventListener("submit", async (event) => {
+          event.preventDefault();
+          const content = document.getElementById("message-content").value;
+
+          try {
+            // Send message to server
+            const response = await fetch("/msg", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ recipientId, content }),
+            });
+
+            if (!response.ok) {
+              const err_msg = await response.json();
+              console.error(err_msg.errorMessage);
+            } else {
+              
+              const updatedMessages = await response.json();
+              displayMessages(updatedMessages);   
+              updateChatData(updatedMessages);
+              document.getElementById("message-content").value = "";
+            }
+          } catch (error) {
+            console.error("Network error:", error);
+          }
+        });
+      } catch (error) {
+        console.error("An error occurred:", error);
+      }
+    });
+  </script>
+</body>
+</html>
+
