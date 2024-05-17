@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            color:white;
+            padding: 0;
+            background: linear-gradient(90deg, #0a0d12 0%, #1e2f43 20%, #1a2f46 85%, #0a0d12 100%);
+        }
+        .container {
+            max-width: 80% !important;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex; /* Make the container flexbox */
+            justify-content: space-around; /* Align columns */
+        }
+        .left-container {
+            max-width: 50%; /* Set max width for left container */
+            padding: 0 20px; /* Add padding */
+        }
+        .right-container-wrapper {
+    max-width: 50%;
+    width: 50%;
+    position: sticky;
+    top: 25%; /* Adjust as needed */
+    align-self: flex-start; /* Align the wrapper to the top */
+}
+
+.right-container {
+    max-width: 80%; /* Adjust as needed */
+    width: 80%;
+    display: flex;
+    color:white;
+    /* background-color: black; */
+    justify-content: center;
+    align-items: flex-start; /* Align content to the top */
+    padding: 0 20px;
+}
+
+        .game-details {
+            text-align: center;
+            margin-top: 20px; /* Add margin to separate from slider */
+        }
+
+        .game-content {
+            text-indent: 80px;
+            color: #d3cccc;
+        }
+        #rating {
+            margin-top: 10px;
+        }
+        .rating span {
+            color: #ffcc00;
+        }
+        .get-btn,
+        .addtocart-btn,#postreviewbutton {
+            background: white;
+            color: #2db767;
+            border: none;
+            min-width: 50%;
+            padding: 10px 20px;
+            font-size: 20px;
+            border-radius: 5px ;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 20px; /* Add margin below buttons */
+        }
+        .get-btn:hover ,.addtocart-btn:hover{
+            background-color: #08f88c;
+            color:black;
+        }
+        /* Add styling for stars */
+        #stars {
+            display: inline-block;
+        }
+        .star{
+            color: #ccc;
+            font-size: 30px;
+            display: inline-block;
+        }
+        .reviewstar{
+            color: #ccc;
+            font-size: 30px;
+            cursor: pointer;
+        }
+        .glow {
+        color: gold;
+        }
+        .rating {
+            margin-top: 10px;
+        }
+        .category{
+           font-size: 18px;
+           color:rgb(225, 0, 246) 
+        }
+        /* Added styling for slider */
+        .slider-container {
+            overflow: hidden;
+            position: relative;
+        }
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease;
+            text-align: center;
+        }
+        .slide {
+            min-width: 100%; /* Divide by number of slides */
+            flex: 0 0 auto;
+            text-align: center; /* Center the image */
+        }
+        .slide img {
+            text-align: center;
+            min-width: 100%; /* Increase the maximum width */
+            height: auto; /* Maintain aspect ratio */
+            max-height: 400px; /* Increase the maximum height */
+            margin: auto; /* Center the image horizontally */
+            display: block; /* Remove any default inline spacing */
+        }
+        .slide:not(:last-child) {
+            margin-right: 10px; /* Add margin between slides */
+        }
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            z-index: 1;
+            background: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            padding: 10px;
+            border-radius: 50%;
+            font-size: 20px;
+        }
+        .prev {
+            left: 10px;
+        }
+        .next {
+            right: 10px;
+        }
+
+        #gamename{
+            font-family: "Orbitron", sans-serif;
+            font-size: 28px;
+        }
+        /* mediaqueries */
+        @media screen and (max-width: 800px){
+        .container {
+            flex-direction: column;
+            justify-content: center;
+        }
+        .left-container,.right-container{
+            max-width: 80% !important;
+        }
+        }
+        .reviewername{
+            color:rgb(69, 227, 133);
+            font-size: 20px;
+        }
+    </style>
+      <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+
+
+<body>
+    <div id="header"></div>
+
+    <div class="container">
+        <div class="left-container">
+            <h3 >
+                <div id="gamename" class="game-details">
+                    <h1></h1>
+                </div>
+            </h3>
+            <div class="slider-container">
+                <div class="slider">
+                    <div class="slide">
+                        <img src="img1" alt="Game Image">
+                    </div>
+                    <div class="slide">
+                        <img src="img2" alt="Game Image">
+                    </div>
+                    <div class="slide">
+                        <img src="img3" alt="Game Image">
+                    </div>
+                    <div class="slide">
+                        <img src="img4" alt="Game Image">
+                    </div>
+                </div>
+                <div class="arrow prev">&#10094;</div>
+                <div class="arrow next">&#10095;</div>
+            </div>
+            <br>
+            <h2 style="color: rgb(173, 247, 89);">About the Game</h2>
+            <div id="game-content">
+                <p></p>
+            </div>
+            <br>
+
+            
+            <div>
+                <h2 style="color:rgb(247, 251, 4);">Reviews</h2>
+            </div>
+
+            <div id="reviewsbox"></div>
+            <br>
+            <br>
+
+            <div id="reviewformbox">
+                <h3 style="color: rgb(247, 251, 4);">POST A REVIEW HERE ....</h3>
+                <form class="forms" action="/game-page/postreview" method="post"  id="reviewform">
+                    <textarea rows="6" cols="59" name="postreview" style="font-size: 18px;" maxlength="200" minlength="1" required>
+                    </textarea>
+                    <div id="reviewrating"><p style="color: rgb(247, 251, 4);">Rate the game !</p>
+                       <div id="reviewstars">
+                            <span class="reviewstar">&#9733;</span>
+                            <span class="reviewstar">&#9733;</span>
+                            <span class="reviewstar">&#9733;</span>
+                            <span class="reviewstar">&#9733;</span>
+                            <span class="reviewstar">&#9733;</span>
+                        </div>
+                    </div>
+                    <input type="hidden" name="reviewrating" id="reviewratingValue" value="0" required>
+                    <button type="submit" id="postreviewbutton">POST</button>
+                </form>
+                <p id="reviewnotification"></p>
+            </div>
+
+        </div>
+        <div class="right-container-wrapper">
+            <div class="right-container">
+                <div class="game-details">
+                    <div id="gamenameright" style="color:gold ;font-size:60px;">
+                        <h1></h1>
+                    </div>
+                    <br>
+                    <div class="category">
+                        <div>Action/3D</div>
+                    </div>
+                    <h2>Price</h2>
+                    <p>$ </p>
+                    <!-- <div id="rating" gamerating="4">Rating: -->
+                    <div id="rating">Rating:
+                        <div id="stars">
+                            <span class="star">&#9733;</span>
+                            <span class="star">&#9733;</span>
+                            <span class="star">&#9733;</span>
+                            <span class="star">&#9733;</span>
+                            <span class="star">&#9733;</span>
+                        </div>
+                    </div>
+                    <br>
+                    <div style="display: block;">
+                        <!-- <button class="get-btn">Get</button> -->
+                        <a href="/game-page/payment" class="get-btn">Get</a>
+                        <br>
+                        <button class="addtocart-btn">Add to cart</button>
+                        <p id="cartnotification"></p>
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer"></div>
+</body>
+
+<script>
+
+
+$(function(){
+        if (document.cookie.includes('username')) {
+            console.log("Logged in user");
+            $('#header').load('header.html');
+        } else {
+            console.log("No logged in user");
+            $('#header').load('header1.html');
+        }
+        $('#footer').load('footer.html');
+        $('#navigation_bar').load('navigationbar.html');
+    });
+    document.addEventListener("DOMContentLoaded", async () => {
+    try {
+        const productData = JSON.parse(localStorage.getItem('productData'));
+        const response = await fetch('/game-data', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ gameName: productData.game_name })
+        });
+        if (!response.ok) {
+            const errorResponse = await response.json();
+            console.error(errorResponse.message);
+            showNotification(errorResponse.message, "red");
+        } else {
+            const responseData = await response.json();
+            localStorage.setItem('productData', JSON.stringify(responseData.updatedGameData));
+            updateUI(responseData.updatedGameData);
+        }
+    } catch (error) {
+        console.error(error);
+        showNotification("Network error. Please try again.", "red");
+    }
+});
+
+document.addEventListener("DOMContentLoaded",async () => {
+        const productData =await JSON.parse(localStorage.getItem('productData'));
+        if (productData) {
+            setstars(productData.rating)
+            document.getElementById('gamename').textContent= productData.game_name;
+            document.getElementById('gamenameright').textContent= productData.game_name;
+            document.cookie=`gamename=${productData.game_name};`
+            document.querySelector('.game-details p').textContent+=productData.price;
+            document.querySelector('.category').textContent= productData.category;
+            document.querySelectorAll('.slide').forEach((slide, index) => {
+                    const img = slide.querySelector('img');
+                    if (img && productData.clips[index]) {
+                      img.src = productData.clips[index].url;
+                        }
+               });
+            document.getElementById('game-content').textContent= productData.description;
+
+            const container = document.querySelector('#reviewsbox');
+            var lastFiveReviews =productData.reviews.slice(-5).reverse(); // Extract the last five reviews
+
+        lastFiveReviews.forEach(function(review,index) {
+            var div = document.createElement('div');
+            div.classList.add('eachreview');
+            div.innerHTML = `
+            <span class="reviewername">${review.name}</span>
+            <p class="stars-container">${getStarRating(review.rating)}</p>
+            <p class="reviewerreview">${review.review}</p>`;
+            container.appendChild(div);
+        });
+
+        } else {
+            console.log('Product data not found in localStorage');
+        }
+    });
+
+    function getStarRating(rating) {
+    var stars = '';
+    for (var i = 0; i < 5; i++) {
+        var color = (i < rating) ? "gold" : "#ccc";
+        stars += `<span  style="color:${color}">&#9733;</span>`;
+    }
+    return stars;
+}
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    const stars = document.querySelectorAll("#reviewstars .reviewstar");
+    const ratingValue = document.getElementById("reviewratingValue");
+
+    stars.forEach((star, index) => {
+        star.addEventListener("click", function() {
+            stars.forEach((s, i) => {
+                if (i <= index) {
+                    s.classList.add("glow");
+                } else {
+                    s.classList.remove("glow");
+                }
+            });
+            ratingValue.value = index + 1;
+        });
+    });
+});
+
+document.querySelector("#reviewform").addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const formData = new FormData(form);
+    const formObject = Object.fromEntries(formData.entries());
+
+    try {
+        const response = await fetch('/game-page/postreview', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formObject),
+        });
+        if (!response.ok) {
+            const errorResponse = await response.json();
+            console.error(errorResponse.message);
+            showNotification(errorResponse.message, "red");
+        } else {
+            const responseData = await response.json();
+            // Update local storage with the updated game data
+            localStorage.setItem('productData', JSON.stringify(responseData.updatedGameData));
+            // Update UI with the updated game data
+            updateUI(responseData.updatedGameData);
+            showNotification("Review posted successfully!", "green");
+        }
+    } catch (error) {
+        console.error(error);
+        showNotification("Network error. Please try again.", "red");
+    }
+    form.reset();
+});
+
+
+function updateUI(gameData) {
+    if (gameData) {
+        setstars(gameData.rating);
+        document.getElementById('gamename').textContent = gameData.game_name;
+        document.getElementById('gamenameright').textContent = gameData.game_name;
+        document.cookie = `gamename=${gameData.game_name};`;
+        document.querySelector('.game-details p').textContent = `Price: $ ${gameData.price}`;
+        document.querySelector('.category').textContent = gameData.category;
+        document.querySelectorAll('.slide').forEach((slide, index) => {
+            const img = slide.querySelector('img');
+            if (img && gameData.clips[index]) {
+                img.src = gameData.clips[index].url;
+            }
+        });
+        document.getElementById('game-content').textContent = gameData.description;
+
+        updateReviewSection(gameData.reviews);
+    } else {
+        console.log('Failed to fetch game data');
+    }
+}
+
+
+function updateReviewSection(reviews) {
+    const container = document.querySelector('#reviewsbox');
+    container.innerHTML = ''; // Clear previous reviews
+    reviews.slice(-5).reverse().forEach(function (review, index) {
+        var div = document.createElement('div');
+        div.classList.add('eachreview');
+        div.innerHTML = `
+            <span class="reviewername">${review.name}</span>
+            <p class="stars-container">${getStarRating(review.rating)}</p>
+            <p class="reviewerreview">${review.review}</p>`;
+        container.appendChild(div);
+    });
+}
+
+function showNotification(message, color) {
+    const notification = document.querySelector("#reviewnotification");
+    notification.textContent = message;
+    notification.style.color = color;
+    notification.style.display = "block";
+    setTimeout(function () {
+        notification.textContent = "";
+        notification.style.display = "none";
+    }, 4000);
+}
+
+document.addEventListener("DOMContentLoaded", async (event) => {
+    document.querySelector(".addtocart-btn").addEventListener("click", async (event)=>{
+        event.preventDefault();
+        const cart_games = document.querySelector("#gamename").textContent;
+
+        try {
+            const response = await fetch("/addtocart", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ cart_games })
+            });
+
+            if (!response.ok) {
+                const err_msg = await response.json();
+                console.error(err_msg.errorMessage);
+            } else {
+                const success_msg = await response.json();
+                document.querySelector(".right-container #cartnotification").textContent = success_msg.successMsg;
+                setTimeout(function() {
+                document.querySelector(".right-container #cartnotification").textContent = "";
+                }, 4000);
+            }
+        } catch (error) {
+            console.error("Network error:", error);
+        }
+    });
+});
+
+
+        const slider = document.querySelector('.slider');
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.querySelector('.prev');
+        const nextBtn = document.querySelector('.next');
+        let counter = 0;
+        const slideWidth = slides[0].clientWidth;
+        
+        function navigateSlide(direction) {
+            if (direction === 'next') {
+                counter++;
+                if (counter === slides.length) {
+                    counter = 0;
+                }
+            } else if (direction === 'prev') {
+                counter--;
+                if (counter < 0) {
+                    counter = slides.length - 1;
+                }
+            }
+            slider.style.transform = `translateX(-${counter * slideWidth}px)`;
+        }
+        
+        nextBtn.addEventListener('click', () => navigateSlide('next'));
+        prevBtn.addEventListener('click', () => navigateSlide('prev'));
+
+        function setstars(rating) {
+            const starsContainer = document.getElementById('stars');
+            const stars = starsContainer.querySelectorAll('.star');
+            const wholeStars = Math.floor(rating);
+            const fraction = rating - wholeStars;
+
+            for (let i = 0; i < wholeStars; i++) {
+                stars[i].style.color = '#ffcc00';
+            }
+
+            if (fraction > 0) {
+                const fractionalStarIndex = wholeStars;
+                const percentage = fraction * 100;
+                stars[fractionalStarIndex].style.color = '#ffcc00';
+                stars[fractionalStarIndex].style.clipPath = `polygon(0 0, ${percentage}% 0, ${percentage}% 100%, 0 100%)`;
+            }
+        }
+    </script>
+</html>

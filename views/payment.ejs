@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        .payment {
+            text-align: center;
+            margin: auto;
+            border:2px solid rgb(216, 144, 9);
+            width:800px;
+            border-radius: 20px;
+        }
+
+        button {
+            color: white;
+            background-color: green;
+            border-radius: 5px;
+            border: 2px groove black;
+            width: 150px;
+            height: 25px;
+        }
+
+        button:hover {
+            cursor: pointer;
+            background-color: rgb(46, 246, 46);
+        }
+
+        button:active {
+            background-color: rgb(7, 120, 7);
+        }
+
+        #pay-notf,
+        #down-notf {
+            font-size: 25px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+        #after-down {
+            font-size: 60px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="payment">
+        <h1>GAME:<span id="gamename"></span></h1>
+        <h2>Price: $ <span id="price"></span></h2>
+        <p>CLICK ON THIS BUTTON FOR SUCCESSFUL PAYMENT</p>
+        <form action="/paygame" method="POST">
+            <button id="paymentbtn">PAYMENT</button>
+        </form>
+        <p id="pay-notf"></p>
+        <br>
+        <a href="/login?from=payment" id="login-link"><button type="button" style="display: none;" id="login-btn">LOGIN</button></a>
+
+        <p id="down-notf"></p>
+        <form action="/downloadgame" method="POST">
+            <button type="submit" style="display: none;" id="down-btn"> DOWNLOAD</button>
+        </form>
+        <br>
+        <br> <br>
+        <p id="after-down"></p>
+
+    </div>
+
+</body>
+
+
+<script>
+
+    document.addEventListener("DOMContentLoaded", async () => {
+        const productData = await JSON.parse(localStorage.getItem('productData'));
+        if (productData) {
+            document.getElementById('gamename').textContent = productData.game_name;
+            document.querySelector('#price').textContent += productData.price;
+        }
+    }
+    )
+
+    document.addEventListener("DOMContentLoaded", () => {
+  const loginButton = document.getElementById("login-btn");
+  const loginLink = document.getElementById("login-link");
+  
+  loginButton.addEventListener("click", () => {
+    loginLink.click(); // Simulate click on the login link
+  });
+});
+
+
+    document.addEventListener("DOMContentLoaded", async (event) => {
+        document.querySelector("#pay-notf").textContent = "";
+        document.querySelector("#down-notf").textContent = "";
+        document.querySelector("#down-btn").style.display = "none";
+        document.querySelector("#paymentbtn").addEventListener("click", async (event) => {
+            event.preventDefault();
+            try {
+                const response = await fetch("/paygame", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                });
+
+                if (!response.ok) {
+                    const err_msg = await response.json();
+                    console.error(err_msg.errorMessage);
+                    document.querySelector("#pay-notf").textContent = err_msg.errorMessage;
+                    document.querySelector("#login-btn").style.display = "inline-block";
+                } else {
+                    const success_msg = await response.json();
+                    document.querySelector("#pay-notf").textContent = success_msg.paymessage;
+                    document.querySelector("#down-notf").textContent = success_msg.downloadmessage;
+                    if (success_msg.downloadmessage) {
+                        document.querySelector("#down-btn").style.display = "inline-block";
+                    }
+                }
+            } catch (error) {
+                console.error("Network error:", error);
+            }
+        });
+    });
+
+
+
+    document.addEventListener("DOMContentLoaded", async (event) => {
+        document.querySelector("#after-down").textContent = "";
+        document.querySelector("#down-btn").addEventListener("click", async (event) => {
+            event.preventDefault();
+            try {
+                const response = await fetch("/downloadgame", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                });
+
+                if (!response.ok) {
+                    const err_msg = await response.json();
+                    console.error(err_msg.errorMessage);
+                } else {
+                    const success_msg = await response.json();
+                    document.querySelector("#after-down").textContent = success_msg.message;
+                }
+            } catch (error) {
+                console.error("Network error:", error);
+            }
+        });
+    });
+</script>
+
+</html>

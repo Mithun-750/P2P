@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="about.js"></script>
+</head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@500&family=Orbitron:wght@400..900&display=swap"
+  rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+  href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Libre+Franklin:wght@500&family=Orbitron:wght@400..900&display=swap"
+  rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+  href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Libre+Franklin:wght@500&family=Orbitron:wght@400..900&family=Roboto+Slab:wght@100..900&display=swap"
+  rel="stylesheet">
+<link rel="stylesheet" href="./css/about.css">
+
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script>
+    $(function(){
+        if (document.cookie.includes('username')) {
+            console.log("Logged in user");
+            $('#header').load('header.html');
+        } else {
+            console.log("No logged in user");
+            $('#header').load('header1.html');
+        }
+        $('#footer').load('footer.html');
+    });
+</script>
+
+<body>
+  <div id="header"></div>
+
+  <div class="aboutus">
+    <div class="firstpart">
+      <div class="firstpartcontent">
+        <img src="./images/design_a_logo_with_word__P2P__p2p_with_high_-removebg-preview-transformed.png" alt="">
+        <h1>PAY TO PLAY<sup style="font-size: 20px;">&reg;</sup></h1>
+        <p>Your premier hub for all things gaming, offering unparalleled selection and unbeatable deals. Dive into a
+          world of endless excitement and discover your next gaming adventure today!</p>
+      </div>
+
+      <div class="firstpartvideo">
+        <video autoplay loop muted id="myVideo">
+          <source src="./images/Blue & White Futuristic Gaming Channel Youtube Intro .mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+
+    <div class="secondpart">
+      <div class="secondpartcontent">
+        <h1>what we believe in</h1>
+        <ul class="believes">
+          <li>Highlight the sense of community and belonging that gaming fosters. Mention how games bring people
+            together,
+            whether it's through cooperative play, competitive matches, or shared experiences.</li>
+          <li>We believe games can let you do extraordinary things. They bring you this pure moment of escapism that
+            just
+            makes you happy.</li>
+          <li>We believe that everyone should be able to enjoy games. Wherever you are, whenever you want, whatever you
+            like.</li>
+          <li> Emphasize your dedication to diversity and inclusivity within gaming. Discuss initiatives aimed at making
+            gaming accessible to people of all backgrounds, abilities, and identities.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="thirdpart">
+      <div class="games_col" id="games_col_left">
+        <div class="game_image" style="transform: translate3d(250px, 28px, 0px)">
+          <a href="#">
+            <img src="https://cdn.akamai.steamstatic.com/steam/apps/553850/capsule_231x87.jpg?t=1707955699"
+              class="visible">
+          </a>
+        </div>
+        <div class="game_image" style="transform: translate3d(80px, 40px, 0px);">
+          <a href="#">
+            <img src="https://cdn.akamai.steamstatic.com/steam/apps/899770/capsule_231x87.jpg?t=1708534852"
+              class="visible">
+          </a>
+        </div>
+        <div class="game_image" style="transform: translate3d(0px, 50px, 0px);">
+          <a href="#">
+            <img src="https://cdn.akamai.steamstatic.com/steam/apps/1675200/capsule_231x87.jpg?t=1699990406"
+              class="visible">
+          </a>
+        </div>
+
+        <div class="game_image" style="transform: translate3d(80px, 60px, 0px);">
+          <a href="#">
+            <img src="https://cdn.akamai.steamstatic.com/steam/apps/1172470/capsule_231x87.jpg?t=1707925485"
+              class="visible">
+          </a>
+        </div>
+
+        <div class="game_image" style="transform: translate3d(250px, 70px, 0px);">
+          <a href="#">
+            <img src="https://cdn.akamai.steamstatic.com/steam/apps/1623730/capsule_231x87.jpg?t=1707904340"
+              class="visible">
+          </a>
+        </div>
+      </div>
+      <div class="thirdpartcontent">
+        <h1>Access Games Instantly</h1>
+        <p>With hundreds of games from AAA to indie and everything in-between. Enjoy exclusive deals, automatic game
+          updates, and other great perks.</p>
+        <a href="#">Browse the Store <span id="arrow">-></span></a>
+      </div>
+
+      <div class="games_col" id="games_col_right">
+        <div class="game_image" style="transform: translate3d(-250px,28px,0px);">
+          <a href="#">
+            <img src="https://4kwallpapers.com/images/wallpapers/red-dead-redemption-3840x2160-10885.jpg">
+          </a>
+        </div>
+
+        <div class="game_image" style="transform: translate3d(-80px, 40px, 0px);">
+          <a href="#">
+            <img src="https://images.shopcdn.co.uk/86/38/8638a710f067c10c8d117d1956eb67ce/1400x787/webp/resize">
+          </a>
+        </div>
+
+        <div class="game_image" style="transform: translate3d(0px, 50px, 0px);">
+          <a href="#">
+            <img
+              src="https://c4.wallpaperflare.com/wallpaper/489/876/39/elden-ring-from-software-fromsoftware-hd-wallpaper-preview.jpg">
+          </a>
+        </div>
+
+        <div class="game_image" style="transform: translate3d(-80px, 60px, 0px);">
+          <a href="#">
+            <img src="https://wallpaperset.com/w/full/8/c/5/439976.jpg">
+          </a>
+        </div>
+
+        <div class="game_image" style="transform: translate3d(-250px, 70px, 0px);">
+          <a href="#">
+            <img src="https://i.pinimg.com/originals/9a/2c/1c/9a2c1c428752523b0a8c6a5cb65a386e.jpg">
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div id="footer"></div>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/news.css">
+    <script src="news.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+        <script>
+          $(function(){
+              if (document.cookie.includes('username')) {
+                  console.log("Logged in user");
+                  $('#header').load('header.html');
+              } else {
+                  console.log("No logged in user");
+                  $('#header').load('header1.html');
+              }
+              $('#footer').load('footer.html');
+          });
+      </script>
+</head>
+<body>
+    <div id="header"></div>
+    <div class="news_page">
+    <div id="navigation_bar"></div>
+        <div class="latest_news">
+            <h1>P2P LATEST NEWS</h1>
+            <div class="latest"></div>
+            <div class="latest"></div>
+            <div class="latest"></div>
+            <div class="latest"></div>
+            <div class="latest"></div>
+            <div class="latest"></div>
+            <div class="latest"></div>
+            <div class="latest"></div>
+            <div class="latest"></div>
+            <div class="latest"></div>
+        </div>
+    </div>
+
+    <div id="footer"></div>
+</body>
+</html>

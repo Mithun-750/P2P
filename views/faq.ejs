@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Store FAQ</title>
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          margin: 0;
+          padding: 0;
+          overflow-x: hidden;
+          background-color: #f0f0f0;
+          background-image: linear-gradient(90deg, #0a0d12 0%, #1e2f43 20%, #0a0d12 95%);
+        }
+    
+        .container {
+          max-width: 800px;
+          margin: 0 auto;
+          padding: 20px;
+          background-color: #fff;
+          border-radius: 10px;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    
+        h1 {
+          text-align: center;
+          color: #333;
+        }
+    
+        .accordion-item {
+          margin-bottom: 10px;
+        }
+    
+        .accordion-title {
+          background-color: #f4f4f4;
+          color: #333;
+          padding: 15px;
+          cursor: pointer;
+          border-radius: 5px;
+          transition: background-color 0.3s ease;
+          position: relative;
+        }
+    
+        .arrow {
+          position: absolute;
+          top: 50%;
+          right: 15px;
+          transform: translateY(-50%);
+          transition: transform 0.3s ease;
+        }
+    
+        .accordion-item.active .arrow {
+          transform: translateY(-50%) rotate(180deg);
+        }
+    
+        .accordion-title:hover {
+          background-color: #e0e0e0;
+        }
+    
+        .animate-word {
+          display: inline-block;
+          opacity: 0;
+          filter: blur(4px);
+          animation: fade-in 0.8s forwards cubic-bezier(0.11, 0, 0.5, 0);
+        }
+    
+        @keyframes fade-in {
+          100% {
+            opacity: 1;
+            filter: blur(0);
+          }
+        }
+    
+        .accordion-content {
+          overflow: hidden;
+          max-height: 0;
+          padding: 0 10px;
+          transition: max-height 0.3s ease-out;
+          border: 1px solid #ccc;
+          border-top: none;
+          background-color: #f9f9f9;
+        }
+    
+        .accordion-item.active .accordion-content {
+          max-height: 1000px;
+          /* Adjust to a sufficiently large value */
+        }
+    
+    
+        .container {
+          background-image: linear-gradient(90deg, #0a2647 0%, #144272 25%, #205295 50%, #2c74b3 75%);
+        }
+    
+        .container h1 {
+          color: rgb(226, 211, 211);
+          font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+    
+        .container h2 {
+          color: rgb(171, 165, 165);
+          font-size: 1em;
+          text-align: center;
+          position: relative;
+          bottom: 10px;
+          font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+      </style>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script>
+        $(function () {
+            if (document.cookie.includes('username')) {
+                console.log("Logged in user");
+                $('#header').load('header.html');
+            } else {
+                console.log("No logged in user");
+                $('#header').load('header1.html');
+            }
+            $('#footer').load('footer.html');
+        });
+    </script>
+</head>
+
+<body>
+    <div id="header"></div>
+    <div class="container">
+        <h1>FAQ</h1>
+        <h2>Frequently Asked Questions</h2>
+        <div class="accordion">
+            <div class="accordion-item">
+                <div class="accordion-title">Are there any system requirements for playing games on your website?
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <p class="answer">While most of our games are designed to be accessible on a wide range of devices,
+                        some may have specific system requirements. Generally, you'll need a modern web browser with
+                        JavaScript enabled to play our games smoothly. Check the game's description or support page for
+                        any additional requirements.</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-title">What payment methods do you accept?<span class="arrow">▼</span></div>
+                <div class="accordion-content">
+                    <p class="answer">We accept major credit cards (Visa, Mastercard, American Express) as well as
+                        PayPal.</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-title">What kind of games do you offer?<span class="arrow">▼</span></div>
+                <div class="accordion-content">
+                    <p class="answer">We provide a diverse range of games including action, adventure, strategy,
+                        role-playing, puzzle and more. Our library is constantly expanding to cater to various gaming
+                        preferences.</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-title">Are there age restrictions for accessing certain games?
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <p class="answer">Some games may have age restrictions due to their content. We enforce strict
+                        adherence to age ratings to ensure a safe and enjoyable gaming experience for all users.</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-title">I accidentally deleted my account. Can it be recovered?
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <p class="answer">Unfortunately, deleted accounts cannot be recovered once the deletion process is
+                        complete.We recommend exercising caution when deleting your account and ensuring that it is
+                        indeed what you intend to do.If you have any concerns or questions about deleting your account,
+                        please contact our support team for assistance before proceeding.</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-title">I'm unable to login to my account. What should I do?
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <p class="answer">If you're having trouble logging in to your account, first double-check that
+                        you're using the correct email address and password. If you still can't access your account, try
+                        resetting your password using the "Forgot Password" link on the login page. If the problem
+                        persists, contact our support team for assistance.</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-title">Can I connect with other gamers and form friendships on your website?
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <p class="answer">Absolutely! Our platform offers various community features such as forums, chat
+                        rooms, and multiplayer gaming options, allowing users to connect, interact, and form friendships
+                        with fellow gamers from around the world. Join the conversation and make new friends today!</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-title">How can I discover new and exciting games on your platform?<span
+                        class="arrow">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <p class="answer">We offer various ways to discover new games, including curated recommendations,
+                        user reviews, and featured collections. Explore our catalog to find hidden gems and popular
+                        titles across different genres, and follow our social media channels for updates on the latest
+                        releases and promotions.
+                    </p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-title">I encountered a game-breaking bug. Will I lose my progress if I restart the
+                    game?<span class="arrow">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <p class="answer">Restarting the game may resolve some issues, but it could also result in the loss
+                        of unsaved progress. Before restarting, try saving your progress if possible or contacting our
+                        support team for guidance on how to proceed without losing your progress.</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-title">Can I transfer my progress or purchases between different devices or
+                    platforms?<span class="arrow">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <p class="answer">The ability to transfer progress or purchases between devices or platforms depends
+                        on the specific game and its compatibility with cross-platform functionality. Some games may
+                        offer account linking or cloud saving features that allow users to synchronize their progress
+                        across multiple devices or platforms. We recommend checking the individual game's documentation
+                        or support resources for information on cross-platform compatibility and data transfer options.
+                    </p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-title">How do I update my account information, such as email address or
+                    password?<span class="arrow">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <p class="answer">You can update your account information by logging in to your account and
+                        accessing the settings or profile section. From there, you can edit your email address,
+                        password, and other account details as needed.</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-title">Are there any subscription fees or hidden charges associated with using
+                    your
+                    website?
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <p class="answer">No, our website is free to use, and there are no subscription fees or hidden
+                        charges. Certain premium features or services may require payment, but we provide transparency
+                        regarding pricin and terms upfront.</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-title">Are there any community guidelines or rules I should be aware of?<span
+                        class="arrow">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <p class="answer">Yes, we have established community guidelines to ensure a positive and respectful
+                        environment for all users. Please familiarize yourself with our guidelines to understand what
+                        behavior is expected and what is not tolerated.</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-title">Do you offer a mobile app for your website?
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <p class="answer">Yes, we offer a mobile app for convenient access to our website's features and
+                        services on the go. You can download the app from the App Store or Google Play Store, depending
+                        on your device.</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-title">Do you organize gaming events or tournaments for your community?
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <p class="answer">Yes, we regularly host gaming events, tournaments, and challenges for our
+                        community members to participate in and compete against each other. Keep an eye on our events
+                        calendar and announcements for exciting opportunities to showcase your skills and win prizes!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+  const accordionItems = document.querySelectorAll('.accordion-item');
+
+  accordionItems.forEach(item => {
+    item.querySelector('.accordion-title').addEventListener('click', function() {
+      item.classList.toggle('active');
+      const answer = item.querySelector('.answer');
+      if (item.classList.contains('active')) {
+        const words = answer.textContent.trim().split(/\s+/); // Trim and split by whitespace
+        answer.innerHTML = ''; // Clear the content
+        words.forEach((word, index) => {
+          const span = document.createElement('span');
+          span.textContent = word;
+          span.classList.add('animate-word');
+          answer.appendChild(span);
+          if (index < words.length - 1) {
+            const space = document.createTextNode(' ');
+            answer.appendChild(space); // Add space between words
+          }
+          span.style.animationDelay = `${index * 0.05}s`; // Adjusted animation delay
+        });
+      }
+    });
+  });
+});
+
+
+  </script>
+    <div id="footer"></div>
+</body>
+
+</html>

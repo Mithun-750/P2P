@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+   
+        body {color:white;
+            padding: 0;
+            margin: 0;
+            background-image: linear-gradient(90deg, #0f1620 10%, #1e2f43 20%, #1e2f43 80%, #0f1620 90%);
+        }
+
+        
+        .container {
+            margin: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .box1 {
+            display: flex;
+            flex-direction: column; /* Changed from row to column */
+            border: 4px groove black;
+            border-radius: 20px;
+            width: 80%;
+            background-image: linear-gradient(90deg, #0a0d12 0%, #1e2f43 20%, #0a0d12 95%);
+            overflow: hidden;
+        }
+
+        /* .box1 div{
+            /* display: flex;
+            justify-content: center;
+            align-items: center; */
+        
+
+        .part2 {
+            /* display: flex;
+            flex-direction: column; */
+            position: relative;
+            left: 5%;
+        }
+
+        .part2 .name {
+            font-size: 25px;
+            color: rgb(172, 241, 33);
+           font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+        .part2 .xyz {
+            font-size: 30px;
+            position: relative;
+            top: 15%;
+            color: whitesmoke;
+        }
+
+
+        .box1 img{
+            margin: 20px;
+            border:1px solid rgb(58, 52, 52);
+            border-radius: 20px;
+        }
+ 
+    </style>
+</head>
+
+<body>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script>
+        $(function () {
+            if (document.cookie.includes('username')) {
+                console.log("Logged in user");
+                $('#header').load('header.html');
+            } else {
+                console.log("No logged in user");
+                $('#header').load('header1.html');
+            }
+            $('#footer').load('footer.html');
+        });
+    </script>
+    <div id="header"></div>
+    <div class="container">
+        <div class="box1">
+           
+            <div class="game-container">
+               
+            </div>
+        </div>
+        <br><br>
+    </div>
+     <div id="footer"></div>
+</body>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const filter_games = JSON.parse(localStorage.getItem('filter_games'));
+
+        const categoriesResult = document.querySelector(".box1");
+
+        if (!filter_games || filter_games.length === 0) {
+            categoriesResult.textContent = "No games Found";
+        } else {
+            filter_games.forEach((game) => {
+                const gameContainer = document.createElement('div');
+                gameContainer.classList.add('game-container'); // Added class for each game container
+                const imageContainer = document.createElement('div');
+                imageContainer.classList.add('part1');
+                const image = document.createElement('img');
+                image.src = game.clips[0].url;
+                image.width = "250";
+                image.height = "250";
+                imageContainer.appendChild(image);
+
+                const gameInfoContainer = document.createElement('div');
+                gameInfoContainer.classList.add('part2');
+                const gameName = document.createElement('span');
+                gameName.textContent = game.game_name;
+                gameName.classList.add('name');
+                const gameDescription = document.createElement('p');
+                gameDescription.textContent = game.description;
+                gameInfoContainer.appendChild(gameName);
+                gameInfoContainer.appendChild(gameDescription);
+
+                gameContainer.appendChild(imageContainer);
+                gameContainer.appendChild(gameInfoContainer);
+                categoriesResult.appendChild(gameContainer);
+            });
+        }
+    });
+
+
+   
+    document.addEventListener('DOMContentLoaded', async function() {
+    const gamesContainer = document.querySelector('.box1'); // Changed to '.box1'
+    gamesContainer.addEventListener('click', function(event) {
+        if (event.target.tagName === 'IMG') { // Check if the clicked element is an image
+            const gameDiv = event.target.closest('.game-container'); // Find the closest parent with class 'game-container'
+            if (gameDiv) {
+                const gameName = gameDiv.querySelector('.name').textContent; // Find the game name within the game div
+                const imageUrl = event.target.src;
+
+                fetch('/getGame', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ game_name: gameName}) // Send gameName along with imageUrl
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Product data:', data); 
+                    localStorage.setItem('productData', JSON.stringify(data));
+                    window.location.href = '/game-page'; 
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            }
+        }
+    });
+});
+
+</script>
+
+</html>

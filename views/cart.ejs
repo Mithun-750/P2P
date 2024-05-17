@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Cart</title>
+  <style>
+    /* CSS Styles */
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(90deg, #0a0d12 0%, #1e2f43 20%, #1a2f46 85%, #0a0d12 100%);
+      margin: 0;
+      padding: 20px; /* Padding applied to body instead of .cart-container */
+    }
+
+    .cart-container {
+      display: flex;
+      flex-wrap: wrap; /* Allow items to wrap if needed */
+      justify-content: center;
+      gap: 20px;
+      max-width: 1200px; /* Set a max-width to prevent overflowing */
+      margin: 0 auto; /* Center the container horizontally */
+    }
+
+    .game-item {
+      background-color: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease, opacity 0.5s ease; /* Added opacity transition */
+      width: 300px;
+      /* Set a fixed width for consistency, adjust as needed */
+    }
+
+    .game-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .game-item img {
+      width: 100%;
+      height: 200px; /* Fixed height for all images */
+      object-fit: cover; /* Maintain aspect ratio and cover the entire container */
+      display: block;
+    }
+
+    .game-details {
+      padding: 20px;
+    }
+
+    .game-details h3 {
+      margin: 0;
+      color: #333;
+    }
+
+    .game-details p {
+      margin: 5px 0;
+      color: #666;
+    }
+
+    .buy-btn,
+    .remove-btn {
+      background-color: #4caf50;
+      color: #fff;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .buy-btn:hover,
+    .remove-btn:hover {
+      background-color: #45a049;
+    }
+
+    /* Animation for removal message */
+    @keyframes slideDown {
+      0% { opacity: 0; transform: translateY(-50px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .remove-message {
+      color: red;
+      font-family: "Arial Black", sans-serif;
+      font-size: 18px;
+      text-align: center;
+      margin-top: 10px;
+      opacity: 0;
+      animation: slideDown 0.5s ease forwards; /* Use animation for smooth transition */
+      transition: transform 0.3s ease, display 0.5s ease;
+    }
+
+    .empty-cart-message {
+      color: #fff;
+      font-family: Arial, sans-serif;
+      font-size: 24px;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    .checkout {
+      height: 70px;
+      width: 100px;
+      background-color: greenyellow;
+      position: absolute;
+      bottom: 100px;
+      right: 100px;
+    }
+
+    .total{
+      color: white;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="cart-container" id="cartContainer"></div>
+  <div class="remove-message" id="removeMessage"></div>
+  <div class="empty-cart-message" id="emptyCartMessage" style="display: block;">Your cart is empty</div>
+  <div class="checkout">
+    <button type="button" id="buyButton">BUY</button>
+</div>
+  <script>
+
+    
+
+   
+    document.addEventListener("DOMContentLoaded", async () => {
+      try {
+        const response = await fetch('/getCartgames');
+        if (!response.ok) {
+          throw new Error('Failed to fetch cart items');
+        }
+
+        var total= 0;
+        const data = await response.json();
+        const cartContainer = document.getElementById('cartContainer');
+        const emptyCartMessage = document.getElementById('emptyCartMessage');
+
+        if (data.length !== 0) {
+          emptyCartMessage.style.display = 'none';
+        } 
+
+        
+        data.forEach(game => {
+          
+         
+          total+=game.price;
+          
+          const gameItem = document.createElement('div');
+          gameItem.classList.add('game-item');
+
+          const image = document.createElement('img');
+          image.src = game.clips[0].url; // Use the first URL from the clips array as the image source
+          image.alt = game.game_name; // Assuming game_name corresponds to the name
+          gameItem.appendChild(image);
+
+          const gameDetails = document.createElement('div');
+          gameDetails.classList.add('game-details');
+
+          const name = document.createElement('h3');
+          name.textContent = game.game_name;
+          gameDetails.appendChild(name);
+
+          const price = document.createElement('p');
+          price.textContent = '$' + (game.price ); // If price is not available, assign 0
+          gameDetails.appendChild(price);
+
+         
+
+          const removeButton = document.createElement('button');
+          removeButton.classList.add('remove-btn');
+          removeButton.textContent = 'Remove';
+          removeButton.addEventListener('click', () => removeFromCart(removeButton));
+          gameDetails.appendChild(removeButton);
+
+          gameItem.appendChild(gameDetails);
+          cartContainer.appendChild(gameItem);
+        });
+
+        if (total > 0) {
+     const totalText = document.createElement('h2');
+     totalText.textContent = total.toFixed(2); 
+      totalText.classList.add("total"); 
+     document.querySelector(".checkout").appendChild(totalText); 
+     }
+        
+      } catch (error) {
+        console.error('Error fetching cart items:', error);
+      }
+    });
+
+    async function removeFromCart(button) {
+      try {
+        const gameItem = button.closest('.game-item');
+        const gameName = gameItem.querySelector('h3').textContent;
+
+        const response = await fetch('/removetocart', {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ cart_games: gameName })
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to remove item from cart');
+        }
+
+        gameItem.style.opacity = '0';
+        setTimeout(() => {
+          gameItem.style.display = 'none';
+          const removeMessage = document.getElementById('removeMessage');
+          removeMessage.textContent = gameName + " has been removed from the cart.";
+          removeMessage.style.display = 'block';
+
+          setTimeout(() => {
+            removeMessage.style.display = 'none';
+            if (document.querySelectorAll('.game-item').length === 0) {
+              document.getElementById('emptyCartMessage').style.display = 'block';
+            }
+          }, 2000);
+        }, 500);
+       
+      } catch (error) {
+        console.error('Error removing item from cart:', error);
+      }
+    }
+
+
+
+
+    document.addEventListener("DOMContentLoaded", async()=>{
+        document.getElementById("buyButton").addEventListener("click", async() => {
+            
+        const response = await fetch('/getCartgames');
+
+        if (!response.ok) {
+          throw new Error('Failed ');
+        }
+        
+        const data=await response.json();
+        localStorage.setItem('productData', JSON.stringify(data));
+        console.log(data);
+        
+        window.location.href='/cart-payment';
+
+        });
+
+        
+    });
+
+
+  </script>
+</body>
+
+</html>
+
